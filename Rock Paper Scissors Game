@@ -1,0 +1,31 @@
+#program that will play rock paper scissors with the user
+
+a='rock';
+b='paper';
+c='scissors';
+player_1_play=input("player one play choice(rock, paper, or scissors): ")
+
+
+import random
+player_2_play = random.randint(0,2);
+if player_2_play == 0:
+    player_2_play = a
+elif player_2_play == 1:
+    player_2_play = b
+elif player_2_play == 2:
+    player_2_play = c
+
+
+while player_1_play == player_2_play:
+    print("Tie, No winner")
+    break
+while player_1_play == a:
+    print("player one wins with rock") if player_2_play == c else print("computer wins with paper")
+    break
+while player_1_play == b:
+    print("player one wins with paper") if player_2_play == a else print("computer wins with scissors")
+    break
+while player_1_play == c:
+    print("player one wins with scissors") if player_2_play == b else print("computer wins with rock")
+    break
+
