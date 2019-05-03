@@ -1,0 +1,54 @@
+#program that plays 'cows and bulls' with the user.
+#a 'cow' is a number in the correct position. a 'bull' is a correct number in the wrong position.
+import random
+import sys
+digits = set(); #using a set to generate 4 different integers
+while len(digits) < 4:
+    digits.add(random.randint(1,9))
+    if len(digits) == 4:
+        break
+list_digits = list();
+print(digits)
+for elem in digits:
+    list_digits.append(elem)
+n = int((1000*list_digits[0])+(100*list_digits[1])+(10*list_digits[2])+(list_digits[3])); #converting string to integer for later use
+#print(list_digits) #displays random numbers generated
+
+c = " cows" #for use in feedback text
+b = " bulls"
+
+guess=int(input("please guess four integers from 1-9, with each number different(ex. 1234, no zeros): "))
+rpt_set = set()
+guess_digits = [int(x) for x in str(guess)]; #converts guess into list of individual integers
+for elem in guess_digits:
+    rpt_set.add(elem)
+#print(rpt_set)
+while len(rpt_set) != 4:
+    guess = int(input("NO REPEATED DIGITS! please restart game: "))
+    sys.exit()
+
+#print (guess_digits)
+cows_list = list(); #creating an empty list for storage of cows
+bulls_list = list(); #empty list for storage of bulls
+
+def CBlists():
+
+        for count in range(0, 4):  # check for cows (correct digit, correct location)
+
+            if list_digits[count] == guess_digits[count]:
+                cows_list.append(1)
+            elif guess_digits[count] in list_digits:  # check for bulls (correct digit, wrong location)
+                bulls_list.append(1)
+
+while guess != n:
+    CBlists()#runs function defined above
+    print(str(len(cows_list)) + c) #returns cows and bulls lists
+    print(str(len(bulls_list)) + b)
+    cows_list = list();  # emptying lists for next round
+    bulls_list = list();
+    guess = int(input("please enter four integers from 1-9, with each number different(ex. 1234, no zeros): "))
+    guess_digits = [int(x) for x in str(guess)];
+#elif len()
+if guess == n:
+    sys.exit("4 cows you win")
+
